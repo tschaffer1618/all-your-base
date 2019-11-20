@@ -11,7 +11,7 @@ var indexRouter = require("./routes/index");
 var favoritesRouter = require("./routes/api/v1/favorites");
 
 var app = express();
-app.set("port", process.env.PORT || 3000);
+// app.set("port", process.env.PORT || 3000);
 app.locals.title = "Sweater Weather";
 
 app.use(logger("dev"));
@@ -25,8 +25,8 @@ app.use("/api/v1/favorites", favoritesRouter.showFavorites);
 app.use("/api/v1/favorites", favoritesRouter.createFavorite);
 app.use("/api/v1/favorites", favoritesRouter.deleteFavorite);
 
-app.listen(app.get("port"), () => {
-  console.log(`${app.locals.title} is running on ${app.get("port")}.`);
-});
+// app.listen(app.get("port"), () => {
+//   console.log(`${app.locals.title} is running on ${app.get("port")}.`);
+// });
 
 module.exports = app;
