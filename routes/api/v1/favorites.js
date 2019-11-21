@@ -7,13 +7,10 @@ const database = require("knex")(configuration);
 
 const showFavorites = router.get("/", (request, response) => {
   const userApiKey = request.body.api_key;
-  database("users")
-    .where("api_key", userApiKey)
+  database("users").where("api_key", userApiKey)
     .then(user => {
       if (user[0]) {
-        database("favorites")
-          .where("user_id", user[0].id)
-          .select("location")
+        database("favorites").where("user_id", user[0].id).select("location")
           .then(favorites => {
             response.status(200).json(favorites);
           })
@@ -21,9 +18,7 @@ const showFavorites = router.get("/", (request, response) => {
             response.status(500).json({ error });
           });
       } else {
-        return response
-          .status(401)
-          .json({ error: "Please supply a valid API key" });
+        return response.status(401).json({ error: "Please supply a valid API key" });
       }
     });
 });
@@ -39,20 +34,16 @@ const createFavorite = router.post("/", (request, response) => {
       });
     }
   }
-  database("users")
-    .where("api_key", userApiKey)
+  database("users").where("api_key", userApiKey)
     .then(user => {
       if (user[0]) {
-        database("favorites")
-          .where("location", location)
+        database("favorites").where("location", location)
           .then(favorite => {
             if (favorite[0]) {
-              return response
-                .status(200)
+              return response.status(200)
                 .json({ message: `You have already favorited ${location}` });
             } else {
-              database("favorites")
-                .insert({ user_id: user[0].id, location: location })
+              database("favorites").insert({ user_id: user[0].id, location: location })
                 .then(favorite => {
                   response.status(200).json({
                     message: `${location} has been added to your favorites`
@@ -64,9 +55,7 @@ const createFavorite = router.post("/", (request, response) => {
             }
           });
       } else {
-        return response
-          .status(401)
-          .json({ error: "Please supply a valid API key" });
+        return response.status(401).json({ error: "Please supply a valid API key" });
       }
     });
 });
@@ -82,17 +71,13 @@ const deleteFavorite = router.delete("/", (request, response) => {
       });
     }
   }
-  database("users")
-    .where("api_key", userApiKey)
+  database("users").where("api_key", userApiKey)
     .then(user => {
       if (user[0]) {
-        database("favorites")
-          .where("location", location)
+        database("favorites").where("location", location)
           .then(favorite => {
             if (favorite[0]) {
-              database("favorites")
-                .del()
-                .where({ user_id: user[0].id, location: location })
+              database("favorites").del().where({ user_id: user[0].id, location: location })
                 .then(favorite => {
                   response.status(204).json({
                     message: `${location} has been removed from your favorites`
@@ -102,15 +87,11 @@ const deleteFavorite = router.delete("/", (request, response) => {
                   response.status(500).json({ error });
                 });
             } else {
-              return response
-                .status(400)
-                .json({ message: `${location} is not in your favorites` });
+              return response.status(400).json({ message: `${location} is not in your favorites` });
             }
           });
       } else {
-        return response
-          .status(401)
-          .json({ error: "Please supply a valid API key" });
+        return response.status(401).json({ error: "Please supply a valid API key" });
       }
     });
 });

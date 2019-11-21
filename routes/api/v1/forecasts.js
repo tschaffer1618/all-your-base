@@ -25,28 +25,38 @@ async function apiForecast(coordinates) {
   return json_response;
 }
 
+function formatFullForecast(location, forecast) {
+  var fullForecast = {
+    location: location,
+    currently: forecast.currently,
+    hourly: forecast.hourly,
+    daily: forecast.daily
+  };
+  return fullForecast;
+}
+
 const getForecast = router.get("/", (request, response) => {
   const location = request.query.location;
   const userApiKey = request.body.api_key;
 
-  database("users")
-    .where("api_key", userApiKey)
+  database("users").where("api_key", userApiKey)
     .then(user => {
       if (user[0]) {
-        apiCoordinates(location).then(coordinates => {
-          apiForecast(coordinates).then(forecast => {
-            response
-              .status(200)
-              .send(forecast)
+        apiCoordinates(location)
+          .then(coordinates => {
+            apiForecast(coordinates)
+              .then(forecast => {
+                response.status(200).send(formatFullForecast(location, forecast))
+              })
               .catch(error => {
                 response.status(500).json({ error });
               });
+          })
+          .catch(error => {
+            response.status(500).json({ error });
           });
-        });
       } else {
-        return response
-          .status(401)
-          .json({ error: "Please supply a valid API key" });
+        return response.status(401).json({ error: "Please supply a valid API key" });
       }
     });
 });
