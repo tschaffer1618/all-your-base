@@ -9,15 +9,6 @@ const environment = process.env.NODE_ENV || "development";
 const configuration = require("../../../knexfile")[environment];
 const database = require("knex")(configuration);
 
-// async function getAllForecasts(arrayOfLocations) {
-//   var finalArray = await Promise.all(arrayOfLocations.map(async (location) => {
-//     var coordinates = await apiHelper.apiCoordinates(location.location);
-//     var forecast = await apiHelper.apiForecast(coordinates);
-//     return formatHelper.formatCurrentForecast(location.location, forecast);
-//   }));
-//   return finalArray;
-// }
-
 const showFavorites = router.get("/", (request, response) => {
   const userApiKey = request.body.api_key;
   database("users").where("api_key", userApiKey)
