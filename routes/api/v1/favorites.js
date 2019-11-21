@@ -15,17 +15,13 @@ const showFavorites = router.get("/", (request, response) => {
     .then(user => {
       if (user[0]) {
         database("favorites").where("user_id", user[0].id).select("location")
-          .then(favorites => {
-            forecastHelper.getAllForecasts(favorites)
-              .then(final => {
-                response.status(200).send(final);
+          .then(favorites => {forecastHelper.getAllForecasts(favorites)
+              .then(final => {response.status(200).send(final);
               })
-              .catch(error => {
-                response.status(500).json({ error });
+              .catch(error => {response.status(500).json({ error });
               });
           })
-          .catch(error => {
-            response.status(500).json({ error });
+          .catch(error => {response.status(500).json({ error });
           });
       } else {
         return response.status(401).json({ error: "Please supply a valid API key" });
@@ -50,18 +46,14 @@ const createFavorite = router.post("/", (request, response) => {
         database("favorites").where("location", location)
           .then(favorite => {
             if (favorite[0]) {
-              return response.status(200)
-                .json({ message: `You have already favorited ${location}` });
+              return response.status(200).json({ message: `You have already favorited ${location}` });
             } else {
               database("favorites").insert({ user_id: user[0].id, location: location })
                 .then(favorite => {
-                  response.status(200).json({
-                    message: `${location} has been added to your favorites`
-                  });
+                  response.status(200).json({message: `${location} has been added to your favorites`});
                 })
-                .catch(error => {
-                  response.status(500).json({ error });
-                });
+                .catch(error => {response.status(500).json({ error });
+              });
             }
           });
       } else {
@@ -93,8 +85,7 @@ const deleteFavorite = router.delete("/", (request, response) => {
                     message: `${location} has been removed from your favorites`
                   });
                 })
-                .catch(error => {
-                  response.status(500).json({ error });
+                .catch(error => {response.status(500).json({ error });
                 });
             } else {
               return response.status(400).json({ message: `${location} is not in your favorites` });

@@ -21,12 +21,10 @@ const getForecast = router.get("/", (request, response) => {
               .then(forecast => {
                 response.status(200).send(formatHelper.formatFullForecast(location, forecast))
               })
-              .catch(error => {
-                response.status(500).json({ error });
+              .catch(error => {response.status(500).json({ error });
               });
           })
-          .catch(error => {
-            response.status(500).json({ error });
+          .catch(error => {response.status(500).json({ error });
           });
       } else {
         return response.status(401).json({ error: "Please supply a valid API key" });
