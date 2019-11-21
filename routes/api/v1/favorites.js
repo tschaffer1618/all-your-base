@@ -1,9 +1,22 @@
 var express = require("express");
 var router = express.Router();
 
+var apiHelper = require("../../../helpers/api_helper");
+var formatHelper = require("../../../helpers/format_helper")
+var forecastHelper = require("../../../helpers/forecast_helper")
+
 const environment = process.env.NODE_ENV || "development";
 const configuration = require("../../../knexfile")[environment];
 const database = require("knex")(configuration);
+
+// async function getAllForecasts(arrayOfLocations) {
+//   var finalArray = await Promise.all(arrayOfLocations.map(async (location) => {
+//     var coordinates = await apiHelper.apiCoordinates(location.location);
+//     var forecast = await apiHelper.apiForecast(coordinates);
+//     return formatHelper.formatCurrentForecast(location.location, forecast);
+//   }));
+//   return finalArray;
+// }
 
 const showFavorites = router.get("/", (request, response) => {
   const userApiKey = request.body.api_key;
@@ -12,7 +25,13 @@ const showFavorites = router.get("/", (request, response) => {
       if (user[0]) {
         database("favorites").where("user_id", user[0].id).select("location")
           .then(favorites => {
-            response.status(200).json(favorites);
+            forecastHelper.getAllForecasts(favorites)
+              .then(final => {
+                response.status(200).send(final);
+              })
+              .catch(error => {
+                response.status(500).json({ error });
+              });
           })
           .catch(error => {
             response.status(500).json({ error });

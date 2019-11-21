@@ -8,6 +8,15 @@ function formatFullForecast(location, forecast) {
   return fullForecast;
 }
 
+function formatCurrentForecast(location, forecast) {
+  var currentForecast = {
+    location: location,
+    current_weather: forecast.currently
+  };
+  return currentForecast;
+}
+
 module.exports = {
-  formatFullForecast
+  formatFullForecast,
+  formatCurrentForecast
 }
