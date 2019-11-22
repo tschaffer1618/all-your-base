@@ -230,8 +230,8 @@ No response (Status 204)
 ### Primary
 
 - Language: JavaScript
-- Framework: NodeJS
-- Server: Express(4.16.1)
+- Runtime Environment: NodeJS
+- Framework: Express(4.16.1)
 - Database: PostgreSQL(7.8.0)
 - ORM: Knex(0.19.5)
 - Testing: Jest(24.9.0)
