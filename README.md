@@ -260,3 +260,17 @@ No response (Status 204)
             IS_PROD: true
         
 - `npm start` or `node app.js` to start the local server
+
+## Database Schema
+
+Users Table: 
+1. ID
+2. Name
+3. API Key
+4. Timestamps
+
+Favorites Table:
+1. ID
+2. User ID (Foreign Key)
+3. Location
+4. Timestamps
