@@ -11,12 +11,13 @@ Sweater Weather Express is an API built in JavaScript with NodeJS, Knex, and Exp
 ##### 1. Get the Detailed Forecast for a City
 
 Request: 
-`GET /api/v1/forecast?location=denver,co
 
-body:
-{
-  "api_key": "<user_api_key>"
-}`
+    GET /api/v1/forecast?location=denver,co
+
+    body:
+    {
+      "api_key": "<user_api_key>"
+    }
 
 Example Response:
     
@@ -126,30 +127,31 @@ Example Response:
 #### 2. Add a Favorite Location
 
 Request:
-`POST /api/v1/favorites
 
-body:
+    POST /api/v1/favorites
 
-{
-  "location": "Denver, CO",
-  "api_key": "<user_api_key>"
-}`
+    body:
+    {
+      "location": "Denver, CO",
+      "api_key": "<user_api_key>"
+    }
 
 Example Response:
 
-`{
-  "message": "Denver, CO has been added to your favorites",
-}`
+    {
+      "message": "Denver, CO has been added to your favorites",
+    }
 
 #### 3. Show All Favorite Locations with a Current Forecast Overview
 
 Request:
-`GET /api/v1/favorites
 
-body:
-{
-  "api_key": "<user_api_key>"
-}`
+    GET /api/v1/favorites
+
+    body:
+    {
+      "api_key": "<user_api_key>"
+    }
 
 Example Response:
 
@@ -192,14 +194,13 @@ Example Response:
 
 Request:
 
-`DELETE /api/v1/favorites
+    DELETE /api/v1/favorites
 
-body:
-
-{
-  "location": "Denver, CO",
-  "api_key": "<user_api_key>"
-}`
+    body:
+    {
+      "location": "Denver, CO",
+      "api_key": "<user_api_key>"
+    }
 
 Example Response: 
 
