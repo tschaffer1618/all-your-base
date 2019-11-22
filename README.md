@@ -4,6 +4,8 @@ Production Link : https://sweater-weather-express-ts.herokuapp.com/
 
 Project Board: https://github.com/tschaffer1618/sweater-weather-express/projects/1
 
+Contributor: [Tyler Schaffer](https://github.com/tschaffer1618)
+
 ## Introduction 
 Sweater Weather Express is an API built in JavaScript with NodeJS, Knex, and Express. A user of the app can send their API key with various requests to get current forecast information about their favorite cities. 
 
