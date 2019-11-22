@@ -230,12 +230,14 @@ No response (Status 204)
 - `knex migrate:latest`
 - `knex seed:run` if you would like to seed the database
 - Create a `config/application.yml` with the following configuration:
-    `GOOGLE_API_KEY: "<YOUR_GOOGLE_GEOCODE_API_KEY>"
-     DARK_SKY_API_KEY: "<YOUR_DARKSKY_API_KEY>"
 
-      development:
-        IS_DEV: true
+        GOOGLE_API_KEY: "<YOUR_GOOGLE_GEOCODE_API_KEY>"
+        DARK_SKY_API_KEY: "<YOUR_DARKSKY_API_KEY>"
 
-      production:
-        IS_PROD: true`
+        development:
+            IS_DEV: true
+
+        production:
+            IS_PROD: true
+        
 - `npm start` or `node app.js` to start the local server
