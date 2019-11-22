@@ -155,39 +155,58 @@ Request:
 
 Example Response:
 
-    [
-      {
-        "location": "Denver, CO",
-        "current_weather": {
-          "summary": "Overcast",
-          "icon": "cloudy",
-          "precipIntensity": 0,
-          "precipProbability": 0,
-          "temperature": 54.91,
-          "humidity": 0.65,
-          "pressure": 1020.51,
-          "windSpeed": 11.91,
-          "windGust": 23.39,
-          "windBearing": 294,
-          "cloudCover": 1,
-          "visibility": 9.12,
+      [
+        {
+            "location": "jacksonville, fl",
+            "current_weather": {
+                "time": 1574374534,
+                "summary": "Clear",
+                "icon": "clear-day",
+                "nearestStormDistance": 170,
+                "nearestStormBearing": 343,
+                "precipIntensity": 0,
+                "precipProbability": 0,
+                "temperature": 63.78,
+                "apparentTemperature": 63.78,
+                "dewPoint": 55.93,
+                "humidity": 0.76,
+                "pressure": 1023.3,
+                "windSpeed": 6.78,
+                "windGust": 9.59,
+                "windBearing": 44,
+                "cloudCover": 0.18,
+                "uvIndex": 0,
+                "visibility": 7.808,
+                "ozone": 261.6
+            }
         },
-        "location": "Golden, CO",
-        "current_weather": {
-          "summary": "Sunny",
-          "icon": "sunny",
-          "precipIntensity": 0,
-          "precipProbability": 0,
-          "temperature": 71.00,
-          "humidity": 0.50,
-          "pressure": 1015.10,
-          "windSpeed": 10.16,
-          "windGust": 13.40,
-          "windBearing": 200,
-          "cloudCover": 0,
-          "visibility": 8.11,
+        {
+            "location": "denver, co",
+            "current_weather": {
+                "time": 1574374534,
+                "summary": "Possible Flurries",
+                "icon": "snow",
+                "nearestStormDistance": 1,
+                "nearestStormBearing": 344,
+                "precipIntensity": 0.003,
+                "precipIntensityError": 0.001,
+                "precipProbability": 0.68,
+                "precipType": "snow",
+                "precipAccumulation": 0.0789,
+                "temperature": 28.95,
+                "apparentTemperature": 24.63,
+                "dewPoint": 26.3,
+                "humidity": 0.9,
+                "pressure": 1020.5,
+                "windSpeed": 3.93,
+                "windGust": 7.54,
+                "windBearing": 30,
+                "cloudCover": 0.94,
+                "uvIndex": 0,
+                "visibility": 6.532,
+                "ozone": 302
+            }
         }
-      }
     ]
 
 #### 4. Remove a Favorite Location
